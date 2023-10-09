@@ -22,6 +22,8 @@ const Team_Builder = () => {
           {
             name: 'Not Found',
             id: 0,
+            stats: null,
+            sprites: null,
           },
         ]);
         setLoading(false); 

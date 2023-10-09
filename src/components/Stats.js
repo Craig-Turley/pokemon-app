@@ -12,37 +12,56 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 const Stats = ({ stats }) => {
 
-    console.log(stats)
+    const labels = ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed']
+    const stats_data = stats ? stats.map(stat => stat.base_stat) : [0,0,0,0,0,0]
 
-    return (
-    <div className="stats">
-        <Bar data={{
-            labels: stats.map(stat => stat.stat.name),
-            datasets: [{
-                label: 'Pokemon Stats',
-                data: stats.map(stat => stat.base_stat),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 1
-            }]
-        }} />
-        {/* <ul className="stats-list">
-            <li>HP</li>
-            <li>Attack</li>
-            <li>Defense</li>
-            <li>Special Attack</li>
-            <li>Special Defense</li>
-            <li>Speed</li>
-        </ul> */}
-    </div>
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Base-stat',
+            data: stats_data,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    }
+
+    const options = {
+        scales: {
+            x: {
+                beginAtZero: true,
+                ticks: {
+                    color: 'black', // Set the color of x-axis labels to black
+                },
+                grid: {
+                    display: false, // Hide the grid on the x-axis}
+                },
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                    display: false, // Hide the grid on the y-axis
+                },
+                ticks: {
+                    display: false, // Hide the ticks on the y-axis
+                },
+
+            },
+        },
+    };
+
+    return (stats ?  
+    (<div className="stats">
+        <Bar data={data} options={options} />
+    </div>) : (null)
   )
 }
 
