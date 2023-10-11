@@ -1,9 +1,20 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('./assets/Pokemon\ GB.ttf');
+}
+
 body {
   background-image: url('./assets/background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
@@ -47,19 +58,42 @@ body {
   padding-right: 20px;
 }
 
+
+.team-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
 .team-builder {
   display: flex;
   flex-direction: column;
   margin: 30px auto;
   align-items: center;
   padding: 10px;
-  max-width: 400px;
-  max-height: 800px;
+  width: 400px;
+  height: 900px;
   margin-top: 20px;
   border-radius: 5px;
   background-color: red;
   border: 10px solid  #FFFFF0;
 }
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 400px;
+  height: 400px;
+  margin: 10px 20px;
+  border-radius: 5px;
+  background-color: red;
+  border: 10px solid  #FFFFF0;
+}
+.team h2 {
+  color:  #FFFFF0;
+} 
 
 .team-builder input {
   margin: 5px;
@@ -114,3 +148,21 @@ body {
   padding: 10px;
   border: 5px solid  #FFFFF0;
 }
+
+Type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.type {
+  height: 40px;
+  width: 90px;
+  font-size: 12px;
+  border: 1px solid black;
+  border-radius: 8px;
+  color: #E8E9EB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'PokemonFont', sans-serif;;
+}  

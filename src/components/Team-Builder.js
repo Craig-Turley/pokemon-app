@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import Pokemon_Search from "./Pokemon-Search";
 import Stats from "./Stats";
+import Button from "./Button";
+import Type from "./Type";
 
-const Team_Builder = () => {
+const Team_Builder = ({addPokemonToTeam}) => {
   
   const [pokemon, setPokemon] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -59,6 +61,14 @@ const Team_Builder = () => {
     })
   };
 
+  const addToTeam = () => {
+    console.log('Here');
+    // Pass the selected Pokémon to the parent component
+    if (pokemon.length > 0 && pokemon[0].id !== 0) {
+      addPokemonToTeam(pokemon[0]);
+    }
+  };
+
   return (
     <div className='team-builder'>
       <form onSubmit={search} className="form-control">
@@ -84,6 +94,19 @@ const Team_Builder = () => {
           /* eslint-disable-next-line */
           <Stats stats={pokemon.stats} key={pokemon.id}/>
         ))}
+      </div>
+      <div>
+        { isLoading ? (<div></div>) :
+        pokemon.map((pokemon) => (
+          /* eslint-disable-next-line */
+          <Type types={pokemon.types} key={pokemon.id}/>
+        ))
+
+        }
+      </div>
+      <div className="buttons">
+        {(pokemon.id !== 0) ? <Button text='Add to Team' color='white' textColor='red' onClick={addToTeam}/> : <div></div>}
+        {(pokemon.id !== 0) ? <Button text='More Information' color='white' textColor='red' onClick={() => console.log('More Information')}/> : <div></div>}  
       </div>
     </div>
   )

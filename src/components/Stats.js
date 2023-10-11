@@ -7,6 +7,7 @@ import {
     BarElement,
     Tooltip
 } from 'chart.js';
+import Type from './Type';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
