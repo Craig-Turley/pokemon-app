@@ -25,8 +25,6 @@ const Type = ({ types }) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    console.log(types_map[types[0].type.name])
-
     return (types ? types.map((type) => (
         <div className="type" style={{backgroundColor: types_map[type.type.name]}}>
                 <h3>{capitilization(type.type.name)}</h3>

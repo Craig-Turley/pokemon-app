@@ -4,7 +4,7 @@ import Stats from "./Stats";
 import Button from "./Button";
 import Type from "./Type";
 
-const Team_Builder = ({addPokemonToTeam}) => {
+const Team_Builder = ({ addPokemonToTeam }) => {
   
   const [pokemon, setPokemon] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -62,13 +62,19 @@ const Team_Builder = ({addPokemonToTeam}) => {
   };
 
   const addToTeam = () => {
-    console.log('Here');
     // Pass the selected Pokémon to the parent component
     if (pokemon.length > 0 && pokemon[0].id !== 0) {
       addPokemonToTeam(pokemon[0]);
     }
   };
 
+  const switchTeam = (team) => {
+    // Function to handle switching between Team 1 and Team 2
+    if (pokemon.length > 0 && pokemon[0].id !== 0) {
+      addPokemonToTeam(pokemon[0], team);
+    }
+  };
+  
   return (
     <div className='team-builder'>
       <form onSubmit={search} className="form-control">
@@ -95,18 +101,17 @@ const Team_Builder = ({addPokemonToTeam}) => {
           <Stats stats={pokemon.stats} key={pokemon.id}/>
         ))}
       </div>
-      <div>
+      <div className="type-container">
         { isLoading ? (<div></div>) :
         pokemon.map((pokemon) => (
           /* eslint-disable-next-line */
           <Type types={pokemon.types} key={pokemon.id}/>
         ))
-
         }
       </div>
-      <div className="buttons">
-        {(pokemon.id !== 0) ? <Button text='Add to Team' color='white' textColor='red' onClick={addToTeam}/> : <div></div>}
-        {(pokemon.id !== 0) ? <Button text='More Information' color='white' textColor='red' onClick={() => console.log('More Information')}/> : <div></div>}  
+      <div className='button-container'>
+        <Button text='Add to Team' color='white' textColor='red' onClick={addToTeam} />
+        <Button text='More Information' color='white' textColor='red' />
       </div>
     </div>
   )

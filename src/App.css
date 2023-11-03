@@ -72,7 +72,7 @@ body {
   align-items: center;
   padding: 10px;
   width: 400px;
-  height: 900px;
+  max-height: 800px;
   margin-top: 20px;
   border-radius: 5px;
   background-color: red;
@@ -94,6 +94,48 @@ body {
 .team h2 {
   color:  #FFFFF0;
 } 
+
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.box {
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 15px;
+  transition: 0.5s;
+  position: relative;
+}
+/* .box:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+  cursor: pointer;
+} */
+.faTimes-container{
+  position: absolute;
+  top: -13px;
+  right: -10px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  transition: 0.5s;
+  box-shadow: 1px 1px 5px black;
+}
+.faTimes-container:hover {
+  transform: scale(1.5);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.faTimes {
+  color: red;
+  padding: 7px;
+}
+
+
 
 .team-builder input {
   margin: 5px;
@@ -149,20 +191,22 @@ body {
   border: 5px solid  #FFFFF0;
 }
 
-Type {
+.type-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 5px;
 }
 .type {
   height: 40px;
-  width: 90px;
+  width: 120px;
   font-size: 12px;
-  border: 1px solid black;
+  border: 1px solid #E8E9EB;
   border-radius: 8px;
   color: #E8E9EB;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'PokemonFont', sans-serif;;
+  font-family: 'PokemonFont', sans-serif;
+  margin: 5px;
 }  
