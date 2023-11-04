@@ -78,6 +78,10 @@ body {
   background-color: red;
   border: 10px solid  #FFFFF0;
 }
+.team-builder-pokemon {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
 .team {
   display: flex;
@@ -94,6 +98,21 @@ body {
 .team h2 {
   color:  #FFFFF0;
 } 
+.team-name {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 15px;
+  font-family: inherit;
+  margin: 20px; 
+  text-align: center;
+  width: 100px;
+}
+.team-name:focus {
+  outline: none;
+}
+
 
 .box-container {
   display: flex;
@@ -134,7 +153,6 @@ body {
   color: red;
   padding: 7px;
 }
-
 
 
 .team-builder input {

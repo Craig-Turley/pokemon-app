@@ -34,7 +34,6 @@ function App() {
         }
       }
       
-      return;
     } else {
       console.log("Pokemon already in team!");
     }
@@ -52,15 +51,33 @@ function App() {
   } 
 
   const addPokemonToTeam2 = (pokemon) => {
-    const isPokemonInTeam = team.some((p) => p.id === pokemon.id);
+    const isPokemonInTeam2 = team2.some((p) => p.id === pokemon.id);
 
-    if (!isPokemonInTeam) {
-      setTeam2([...team, pokemon]);
-      return;
+    if (!isPokemonInTeam2) {
+
+      for (let i = 0; i < team2.length; i++) {
+        if (team2[i].id === 0) {
+          team2[i] = pokemon;
+          setTeam2([...team2]);
+          return;
+        }
+      }
+      
     } else {
       console.log("Pokemon already in team!");
-    }  
+    }
   } 
+
+  const deletePokemonFromTeam2 = (pokemon) => {
+    for(let i = 0; i < team2.length; i++) {
+      if (team2[i].id === pokemon.id){
+        team2.splice(i, 1);
+        team2.push({name: '', id: 0});
+        setTeam2([...team2]);
+        return;
+      }
+    }
+  }
 
   const handleTeamNameChange = (newName, teamNumber) => {
     if (teamNumber === 1) {
@@ -74,10 +91,10 @@ function App() {
     <div className='container'>
       <Header />
       <div className='team-container'>
-        <Team_Builder addPokemonToTeam={addPokemonToTeam}/>
+        <Team_Builder addPokemonToTeam={addPokemonToTeam} addPokemonToTeam2={addPokemonToTeam2}/>
         <div>
           <Team team={team} team_name={'Team 1'} onTeamNameChange={(newName) => handleTeamNameChange(newName, 1)} deletePokemonFromTeam={deletePokemonFromTeam}/>
-          <Team team={team2} team_name={'Team 2'} onTeamNameChange={(newName) => handleTeamNameChange(newName, 2)}/>
+          <Team team={team2} team_name={'Team 2'} onTeamNameChange={(newName) => handleTeamNameChange(newName, 2)} deletePokemonFromTeam={deletePokemonFromTeam2}/>
         </div>
       </div>
       

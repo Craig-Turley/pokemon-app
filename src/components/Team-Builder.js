@@ -4,9 +4,10 @@ import Stats from "./Stats";
 import Button from "./Button";
 import Type from "./Type";
 
-const Team_Builder = ({ addPokemonToTeam }) => {
+const Team_Builder = ({ addPokemonToTeam, addPokemonToTeam2 }) => {
   
   const [pokemon, setPokemon] = useState([]);
+  const [pokemonMoves, setPokemonMoves] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -15,7 +16,12 @@ const Team_Builder = ({ addPokemonToTeam }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        let moves = [];
+        for(let i = 0; i < 4; i++){
+          moves.push(data.moves[i].move);
+        }
         setPokemon([data]);
+        setPokemonMoves(moves);
         setLoading(false); 
       })
       .catch((err) => {
@@ -68,6 +74,13 @@ const Team_Builder = ({ addPokemonToTeam }) => {
     }
   };
 
+  const addToTeam2 = () => {
+    // Pass the selected Pokémon to the parent component
+    if (pokemon.length > 0 && pokemon[0].id !== 0) {
+      addPokemonToTeam2(pokemon[0]);
+    }
+  }
+
   const switchTeam = (team) => {
     // Function to handle switching between Team 1 and Team 2
     if (pokemon.length > 0 && pokemon[0].id !== 0) {
@@ -109,9 +122,19 @@ const Team_Builder = ({ addPokemonToTeam }) => {
         ))
         }
       </div>
+      {/* <div className="moves">
+        {pokemonMoves.map((move) => (
+          <div className="move">
+            <h3>{move.name}</h3>
+          </div>
+        ))}
+      </div> */}
       <div className='button-container'>
+        {isLoading? (<></>) : 
+        (<>
         <Button text='Add to Team' color='white' textColor='red' onClick={addToTeam} />
-        <Button text='More Information' color='white' textColor='red' />
+        <Button text='Add to Team 2' color='white' textColor='red' onClick = {addToTeam2}/>
+        </>)}
       </div>
     </div>
   )
